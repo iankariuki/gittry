@@ -2,3 +2,4 @@
 /// Made by Hedy Li,
 /// Code on GitHub
 pub mod fetch;
+pub use fetch::*;

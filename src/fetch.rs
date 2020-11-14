@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use std::error::Error;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq)]
 pub struct Repository {
     pub author: String,
     pub name: String,
@@ -17,23 +17,23 @@ pub struct Repository {
     pub current_period_stars: u32,
     pub built_by: Vec<Person>,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq)]
 pub struct Person {
     pub href: String,
     pub avatar: String,
     pub username: String,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq)]
 pub struct ProgrammingLanguage {
     pub id: String,
     pub name: String,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq)]
 pub struct SpokenLanguage {
     pub url_param: String,
     pub name: String,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq)]
 pub struct Developer {
     pub username: String,
     pub name: String,
@@ -42,7 +42,7 @@ pub struct Developer {
     pub avatar: String,
     pub repo: Repo,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq)]
 pub struct Repo {
     pub name: String,
     pub description: String,
@@ -138,8 +138,8 @@ fn check_since_validity(since: &str) -> bool {
     ["daily", "weekly", "monthly"].contains(&since)
 }
 async fn languages_list() -> Result<Vec<ProgrammingLanguage>, Box<dyn Error>> {
-    let url = "https://ghapi.huchen.dev/languages";
-    let response: Vec<ProgrammingLanguage> = reqwest::get(url)
+    let url = format!("{}/languages", URL);
+    let response: Vec<ProgrammingLanguage> = reqwest::get(&url)
         .await?
         .json::<Vec<ProgrammingLanguage>>()
         .await?;
