@@ -1,8 +1,15 @@
 [package]
-name = "gtrending"
+name = "rustgtrending"
 version = "0.1.0"
 authors = ["Yvon Manzi <yvonmanzi@gmail.com>"]
+license = "MIT OR Apache-2.0"
+description = " A library to access the github trendinding API "
+readme = "README.md"
+homepage = "https://github.com/yvonmanzi/rust-gtrending"
+repository = "https://github.com/yvonmanzi/rust-gtrending"
+keywords = ["github-trendinding", "api"]
 edition = "2018"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -12,7 +19,10 @@ serde_json = "1.0.59"
 tokio = { version = "0.2", features = ["full"] }
 reqwest = { version = "0.10", features = ["blocking", "json"] }
 
+[dev_dependencies]
+mockito = "0.28.0"
+
 
 
 [lib]
-name = "gtrending" 
+name = "rustgtrending" 
